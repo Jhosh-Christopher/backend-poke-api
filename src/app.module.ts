@@ -17,11 +17,12 @@ import { Trainer, Team, TeamPokemon } from './entities';
     password: process.env.DB_PASSWORD || 'postgres12',
     database: process.env.DB_NAME || 'pokemon_db',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    synchronize: process.env.NODE_ENV == 'development',
-    logging: process.env.NODE_ENV == 'development',
+    synchronize: true,
+    logging: true,
     autoLoadEntities: true,
     }
-  )
+  ),
+  TypeOrmModule.forFeature([Trainer, Team, TeamPokemon]),
 ],
     controllers: [AppController, TrainerController, TeamController],
     providers: [AppService, TeamService, TrainerService, PokeApiService],
