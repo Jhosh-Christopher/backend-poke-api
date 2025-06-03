@@ -5,13 +5,11 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true , forbidNonWhitelisted: true, transform: true }));
   const config = new DocumentBuilder()
     .setTitle('PokeApi')
     .setDescription('API RESTful for PokeApi')
     .setVersion('1.0')
-    .addTag('Team')
-    .addTag('Trainer')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

@@ -21,78 +21,63 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# Pokemon Teams API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+API RESTful para gerenciar Times de Pokémon criados por Treinadores usando Nest.JS e PostgreSQL.
 
-## Project setup
-
-```bash
-$ npm install
-```
-
-## Compile and run the project
+## Setup Rápido
 
 ```bash
-# development
-$ npm run start
+# Instalar dependências
+npm install
 
-# watch mode
-$ npm run start:dev
+# Subir banco PostgreSQL
+docker-compose up -d
 
-# production mode
-$ npm run start:prod
+# Rodar aplicação
+npm run start:dev
 ```
 
-## Run tests
+## URLs Importantes
 
-```bash
-# unit tests
-$ npm run test
+- **API**: http://localhost:3000
+- **Swagger**: http://localhost:3000/api
+- **Banco**: PostgreSQL na porta 5432
 
-# e2e tests
-$ npm run test:e2e
+## Principais Endpoints
 
-# test coverage
-$ npm run test:cov
-```
+### Treinadores
+- `POST /trainers` - Criar treinador
+- `GET /trainers` - Listar treinadores  
+- `GET /trainers/:id` - Buscar por ID
+- `PUT /trainers/:id` - Atualizar
+- `DELETE /trainers/:id` - Deletar
 
-## Deployment
+### Times
+- `POST /teams` - Criar time
+- `GET /teams` - Listar times
+- `GET /teams/trainer/:trainerId` - Times de um treinador
+- `PUT /teams/:id` - Atualizar time
+- `DELETE /teams/:id` - Deletar time
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Pokémons nos Times
+- `POST /teams/:teamId/pokemons` - Adicionar pokémon
+- `GET /teams/:teamId/pokemons` - Listar pokémons do time
+- `DELETE /teams/:teamId/pokemons/:pokemonId` - Remover pokémon
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Variáveis de Ambiente
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+Copie `.env.example` para `.env` (já configurado).
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Tecnologias
 
-## Resources
+- Nest.JS
+- TypeORM
+- Docker
+- PostgreSQL
+- PokéAPI externa
+- Swagger
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Observações
+- Dados dos pokémons vem da PokéAPI
+- Validação automática nos DTOs
