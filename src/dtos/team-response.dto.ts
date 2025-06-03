@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class TeamResponse {
+export class TeamResponseDto {
     @ApiProperty({description: 'The id of the team'})
     id: number;
     @ApiProperty({description: 'The name of the team', example: 'Capivaras'})

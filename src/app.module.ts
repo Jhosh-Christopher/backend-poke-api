@@ -3,6 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TrainerController, TeamController } from './controllers';
+import { TrainerService, TeamService, PokeApiService } from './services';
+import { Trainer, Team, TeamPokemon } from './entities';
 
 
 @Module({
@@ -20,7 +23,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }
   )
 ],
-    controllers: [AppController],
-    providers: [AppService],
+    controllers: [AppController, TrainerController, TeamController],
+    providers: [AppService, TeamService, TrainerService, PokeApiService],
 })
 export class AppModule {}

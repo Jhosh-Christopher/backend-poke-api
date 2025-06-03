@@ -45,6 +45,17 @@ export class TeamService {
         return team;
     }
 
+    async findByTrainerId(trainerId: string): Promise<Team[]> {
+        await this.trainerService.findOne(trainerId);
+        return await this.teamRepository.find({
+            where: { trainer_id: trainerId },
+            relations: ['trainer'],
+            order: {
+                team_name: 'ASC'
+            }
+        });
+    }
+
     async update(id: string, updateTeamDto: UpdateTeamDto): Promise<Team> {
         const team = await this.findOne(id);
         this.teamRepository.merge(team, updateTeamDto);
